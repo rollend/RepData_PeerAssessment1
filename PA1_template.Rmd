@@ -16,13 +16,13 @@ data<-read.csv(unz("activity.zip","activity.csv"))
 
 #Assignment 1: What is mean total number of steps taken per day?
 
-1. Calculate the total number of steps taken per day.
+###1. Calculate the total number of steps taken per day.
 ```{r}
 sumStepsPerDay<-aggregate(steps ~ date,data,sum,na.action=na.pass,na.rm=TRUE)
 head(sumStepsPerDay,5)
 ```
 
-2.Make a histogram of the total number of steps taken each day.
+###2.Make a histogram of the total number of steps taken each day.
 ```{r}
 ggplot(data=sumStepsPerDay, 
        aes(sumStepsPerDay$steps)) + 
@@ -31,7 +31,7 @@ ggplot(data=sumStepsPerDay,
         labs(x="Steps",y="Count")
 ```
 
-3.Calculate and report the mean and median of the total number of steps taken per day.
+###3.Calculate and report the mean and median of the total number of steps taken per day.
 ```{r,results='hide'}
 Stepsmean<-as.integer(mean(sumStepsPerDay$steps,na.rm=TRUE))
 Stepsmedian<-as.integer(median(sumStepsPerDay$steps,na.rm=TRUE))
@@ -42,7 +42,7 @@ The mean of the total number of steps taken per day is `r Stepsmean`
 The median of the total number of steps taken per day is `r Stepsmedian`
 
 #Assignment 2: What is the average daily activity pattern?
-1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+###1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
 ```{r}
 average<-aggregate(steps~interval,data,mean,na.rm=TRUE,na.action=na.pass)
@@ -53,7 +53,7 @@ ggplot(data = average,
         ylab("average number of steps taken")
 ```
 
-2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+###2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
 ```{r, results='hide'}
 max<-average[which.max(average$steps),]
 ```
