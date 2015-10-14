@@ -43,3 +43,22 @@ The median of the total number of steps taken per day is `r Stepsmedian`
 
 #Assignment 2: What is the average daily activity pattern?
 1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
+
+```{r}
+average<-aggregate(steps~interval,data,mean,na.rm=TRUE,na.action=na.pass)
+ggplot(data = average, 
+       aes(x = average$interval, y = average$steps)) + 
+        geom_line() + 
+        xlab("5-minute interval") +
+        ylab("average number of steps taken")
+```
+
+2.Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+```{r, results='hide'}
+max<-average[which.max(average$steps),]
+```
+
+The interval contains the maximum number of steps is `r max$interval` 
+with steps `r as.integer(max$steps)`
+
+#Assignment 3: Imputing missing values

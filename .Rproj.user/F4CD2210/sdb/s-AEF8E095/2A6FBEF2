@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1444838483078.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2A6FBEF2",
+    "lastKnownWriteTime" : 1444838412,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "nxd4axsafe",
+        "caption" : "average",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=average&cache_key=nxd4axsafe",
+        "displayedObservations" : 288,
+        "environment" : "",
+        "object" : "average",
+        "totalObservations" : 288,
+        "variables" : 2
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}
