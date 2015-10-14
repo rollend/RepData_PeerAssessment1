@@ -1,25 +1,45 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
+title: "PA1_template"
+author: "Shen"
+date: "14 October 2015"
+output: html_document
 ---
 
+The document is written in a step-wised approach.
 
-## Loading and preprocessing the data
+#Preparing Data
+Loading data form zip file directly and packages used:
+```{r Loading Data, results='hide'}
+library(ggplot2)
+data<-read.csv(unz("activity.zip","activity.csv"))
+```
 
+#Assignment 1: What is mean total number of steps taken per day?
 
+1. Calculate the total number of steps taken per day.
+```{r}
+sumStepsPerDay<-aggregate(steps ~ date,data,sum,na.action=na.pass,na.rm=TRUE)
+head(sumStepsPerDay,5)
+```
 
-## What is mean total number of steps taken per day?
+2.Make a histogram of the total number of steps taken each day.
+```{r}
+ggplot(data=sumStepsPerDay, 
+       aes(sumStepsPerDay$steps)) + 
+        geom_histogram(binwidth=1000)+
+        labs(title="Histogram of the total number of steps taken each day")+
+        labs(x="Steps",y="Count")
+```
 
+3.Calculate and report the mean and median of the total number of steps taken per day.
+```{r,results='hide'}
+Stepsmean<-as.integer(mean(sumStepsPerDay$steps,na.rm=TRUE))
+Stepsmedian<-as.integer(median(sumStepsPerDay$steps,na.rm=TRUE))
+```
 
+The mean of the total number of steps taken per day is `r Stepsmean`
 
-## What is the average daily activity pattern?
+The median of the total number of steps taken per day is `r Stepsmedian`
 
-
-
-## Imputing missing values
-
-
-
-## Are there differences in activity patterns between weekdays and weekends?
+#Assignment 2: What is the average daily activity pattern?
+1. Make a time series plot (i.e. type = "l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)

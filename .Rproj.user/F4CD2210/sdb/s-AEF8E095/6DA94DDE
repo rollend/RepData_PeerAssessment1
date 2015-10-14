@@ -1,0 +1,18 @@
+{
+    "contents" : "---\ntitle: \"PA1_template\"\nauthor: \"Shen\"\ndate: \"14 October 2015\"\noutput: html_document\n---\n\nThe document is written in a step-wised approach.\n\n#Preparing Data\nLoading data form zip file directly and packages used:\n```{r Loading Data, results='hide'}\nlibrary(ggplot2)\ndata<-read.csv(unz(\"activity.zip\",\"activity.csv\"))\n```\n\n#Assignment 1: What is mean total number of steps taken per day?\n\n1. Calculate the total number of steps taken per day.\n```{r}\nsumStepsPerDay<-aggregate(steps ~ date,data,sum,na.action=na.pass,na.rm=TRUE)\nhead(sumStepsPerDay,5)\n```\n\n2.Make a histogram of the total number of steps taken each day.\n```{r}\nggplot(data=sumStepsPerDay, \n       aes(sumStepsPerDay$steps)) + \n        geom_histogram(binwidth=1000)+\n        labs(title=\"Histogram of the total number of steps taken each day\")+\n        labs(x=\"Steps\",y=\"Count\")\n```\n\n3.Calculate and report the mean and median of the total number of steps taken per day.\n```{r,results='hide'}\nStepsmean<-as.integer(mean(sumStepsPerDay$steps,na.rm=TRUE))\nStepsmedian<-as.integer(median(sumStepsPerDay$steps,na.rm=TRUE))\n```\n\nThe mean of the total number of steps taken per day is `r Stepsmean`\n\nThe median of the total number of steps taken per day is `r Stepsmedian`\n\n#Assignment 2: What is the average daily activity pattern?\n1. Make a time series plot (i.e. type = \"l\") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)\n",
+    "created" : 1444833048109.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1407894917",
+    "id" : "6DA94DDE",
+    "lastKnownWriteTime" : 1444837664,
+    "path" : "E:/GitHub/RepData_PeerAssessment1/PA1_template.Rmd",
+    "project_path" : "PA1_template.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}

@@ -1,0 +1,17 @@
+{
+    "contents" : "---\ntitle: \"ReproResearchCourseProject\"\nauthor: \"Shen\"\ndate: \"14 October 2015\"\noutput: html_document\n---\n```{r Time, echo=FALSE}\ntime<-format(Sys.time(), \"%a %b %d %X %Y\")\n```\nThe current time is `r time`.\n\n```{r Loading Data}\nlibrary(ggplot2)\ndata<-read.csv(\"activity.csv\")\nsummary(data)\n```\n\n\n```{r}\npairs(data)\n```\n\n",
+    "created" : 1444835382790.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1055694049",
+    "id" : "602FEA6F",
+    "lastKnownWriteTime" : 1444831685,
+    "path" : "E:/GitHub/Reproducible research 1/CourseProject.Rmd",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "type" : "r_markdown"
+}
