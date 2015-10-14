@@ -1,0 +1,25 @@
+{
+    "contents" : "",
+    "created" : 1444851900845.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7CE369",
+    "lastKnownWriteTime" : 0,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "sg63guzp9a",
+        "caption" : "missingdate1",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=missingdate1&cache_key=sg63guzp9a",
+        "displayedObservations" : 2304,
+        "environment" : "",
+        "object" : "missingdate1",
+        "totalObservations" : 2304,
+        "variables" : 3
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "type" : "r_dataframe"
+}

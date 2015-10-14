@@ -62,3 +62,58 @@ The interval contains the maximum number of steps is `r max$interval`
 with steps `r as.integer(max$steps)`
 
 #Assignment 3: Imputing missing values
+###1.Calculate and report the total number of missing values in the dataset (i.e. the total number of rows with NAs)
+
+```{r}
+totalmissingValue<-table(is.na(data$steps))
+```
+There are `r totalmissingValue[2]` rows missed value. 
+
+###2.Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+Comparison between two strategies:
+```{r}
+averagedate<-aggregate(steps~date,data,mean,na.rm=TRUE,na.action=na.pass)
+```
+Finding all the steps value in the date/interval that has missing value, simple summary can tell the story: 
+```{r}
+summary(averagedate[averagedate$date %in% data[is.na(data$steps),"date"],])
+summary(average[average$interval %in% data[is.na(data$steps),"interval"],])
+```
+Regards the dateset, if we choose the mean/median for that day, it simply fills number zero. Thus in this study we go for the mean for that 5-minute interval. Function defined as below:
+```{r}
+fillvalue<-function(steps,interval){
+        filled<-NA
+        if (is.na(steps))
+                filled<-(average[average$interval==interval,"steps"])
+        else filled<-c(steps)
+        return(filled)
+}
+```
+
+
+###3.Create a new dataset that is equal to the original dataset but with the missing data filled in.
+```{r}
+filleddata<-data
+filleddata$steps<-mapply(fillvalue,filleddata$steps,filleddata$interval)
+```
+
+###4.Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+```{r}
+sumStepsPerDay_filled<-aggregate(steps ~ date,filleddata,sum,na.action=na.pass,na.rm=TRUE)
+ggplot(data=sumStepsPerDay_filled, 
+       aes(sumStepsPerDay_filled$steps)) + 
+        geom_histogram(binwidth=1000)+
+        labs(title="Histogram of the total number of steps taken each day")+
+        labs(x="Steps",y="Count")
+Stepsfilledmean<-as.integer(mean(sumStepsPerDay_filled$steps,na.rm=TRUE))
+Stepsfilledmedian<-as.integer(median(sumStepsPerDay_filled$steps,na.rm=TRUE))
+```
+
+The mean of the total number of steps taken per day is `r Stepsfilledmean`
+
+The median of the total number of steps taken per day is `r Stepsfilledmedian`
+
+Thus the mean and median are higher than the assignment 1, as mostly the NA values (which by default are setted to 0) are filled with the mean for that 5-minute interval.
+
+#Assignment 4:Are there differences in activity patterns between weekdays and weekends?
+
